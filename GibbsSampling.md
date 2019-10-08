@@ -37,17 +37,17 @@ $$
 
 ​		设$p(z)$为待采样分布，$q(z^{*}|z)$为提议分布，且$q(z^{*}|z)=q(z|z^{*})$，下面对提议分布中的样本设置接收率为
 $$
-A(z^{*},z)=min\left(1,\frac{p(z^{*})}{p(z)}\right)
+A(z,z^{*})=min\left(1,\frac{p(z^{*})}{p(z)}\right)
 $$
 下面证明在上述提议分布和接受率下，此Markov链满足细致平稳条件：
 $$
 \begin{align}
-p(z)q(z^{*}|z)A(z^{*},z)
+p(z)q(z^{*}|z)A(z,z^{*})
 &=p(z)q(z^{*}|z)min\left(1,\frac{p(z^{*})}{p(z)}\right)\\
 &=min\left(p(z)q(z^{*}|z),p(z^{*})q(z^{*}|z)\right)\\
 &=min\left(p(z^{*})q(z|z^{*}),p(z)q(z|z^{*})\right)\\
 &=p(z^{*})q(z|z^{*})min\left(1,\frac{p(z)}{p(z^{*})}\right)\\
-&=p(z^{*})q(z|z^{*})A(z,z^{*})
+&=p(z^{*})q(z|z^{*})A(z^{*},z)
 \end{align}
 $$
 于是待采样分布$p(z)$即是上述Markov链的平稳分布，而稳定后Markov链中转移的状态就可以看做是从待采样分布中的随机样本。
@@ -58,17 +58,17 @@ $$
 
 ​		设$p(z)$为待采样分布，$q(z^{*}|z)$为提议分布，提议分布中的样本接收率设置为
 $$
-A(z^{*},z)=min\left(1,\frac{p(z^{*})q(z|z^{*})}{p(z)q(z^{*}|z)}\right)
+A(z,z^{*})=min\left(1,\frac{p(z^{*})q(z|z^{*})}{p(z)q(z^{*}|z)}\right)
 $$
 下面证明上述提议分布和接受率下，此Markov链满足细致平稳条件：
 $$
 \begin{align}
-p(z)q(z^{*}|z)A(z^{*},z)
+p(z)q(z^{*}|z)A(z,z^{*})
 &=p(z)q(z^{*}|z)min\left(1,\frac{p(z^{*})q(z|z^{*})}{p(z)q(z^{*}|z)}\right)\\
 &=min\left(p(z)q(z^{*}|z),p(z^{*})q(z|z^{*})\right)\\
 &=min\left(p(z^{*})q(z|z^{*}),p(z)q(z^{*}|z)\right)\\
 &=p(z^{*})q(z|z^{*})min\left(1,\frac{p(z)q(z^{*}|z)}{p(z^{*})q(z|z^{*})}\right)\\
-&=p(z^{*})q(z|z^{*})A(z,z^{*})
+&=p(z^{*})q(z|z^{*})A(z^{*},z)
 \end{align}
 $$
 于是待采样分布$p(z)$即是上述Markov链的平稳分布，而稳定后Markov链中转移的状态就可以看做是从待采样分布中的随机样本。
@@ -83,7 +83,7 @@ $$
 
 ​		选择提议分布：$q(x^{'}|x)=N(x^{'};x,1^{2})$。
 
-​		提议分布中的样本接受率为：$A(z^{'},z)=min\left(1,\frac{p(z^{'})q(z|z^{'})}{p(z)q(z^{'}|z)}\right)$，由于提议分布为正态分布，所以$q(z^{'}|z)=q(z|z^{'})$，$A(z^{'},z)=min\left(1,\frac{p(z^{'})}{p(z)}\right)$。
+​		提议分布中的样本接受率为：$A(z,z^{'})=min\left(1,\frac{p(z^{'})q(z|z^{'})}{p(z)q(z^{'}|z)}\right)$，由于提议分布为正态分布，所以$q(z^{'}|z)=q(z|z^{'})$，$A(z,z^{'})=min\left(1,\frac{p(z^{'})}{p(z)}\right)$。
 
 #### 3.2.2 算法流程
 
